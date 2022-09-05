@@ -38,11 +38,15 @@ a:visited, a:active, a:link, a:hover {
 .blog-title {
     margin-bottom: 20px;
     margin-top: 20px;
-    font-size: 40;
+    font-size: 40px;
     font-weight: bold;
     font-family: 'Schoolbell', arial, serif; 
 }
 
 .blog-menu {
+    font-family: 'Schoolbell', arial, serif; 
+}
+
+.home {
     font-family: 'Schoolbell', arial, serif; 
 }
