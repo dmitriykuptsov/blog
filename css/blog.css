@@ -19,6 +19,7 @@
     font-weight: bold;
     font-size: 30px !important;
     text-decoration: solid;
+    font-family: 'Schoolbell', arial, serif; 
 }
 
 a:visited, a:active, a:link, a:hover {
@@ -39,4 +40,9 @@ a:visited, a:active, a:link, a:hover {
     margin-top: 20px;
     font-size: 40;
     font-weight: bold;
+    font-family: 'Schoolbell', arial, serif; 
+}
+
+.blog-menu {
+    font-family: 'Schoolbell', arial, serif; 
 }
