@@ -1,0 +1,42 @@
+.content {
+    width: 40%;
+    margin: auto;
+    /*font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
+    text-align: justify;
+    font-weight: initial;
+    line-height: 2;
+}
+
+.blog-item {
+    margin-top: 10px;
+}
+
+.blog-shortly {
+    font-size: 18px;
+}
+
+.blog-header {
+    font-weight: bold;
+    font-size: 30px !important;
+    text-decoration: solid;
+}
+
+a:visited, a:active, a:link, a:hover {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+
+.latex {
+    margin: auto; 
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.blog-title {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-size: 40;
+    font-weight: bold;
+}
