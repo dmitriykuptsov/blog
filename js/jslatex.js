@@ -25,7 +25,7 @@
                     var $this=$(this),format,s,element,url=opts.url;
                     opts.equation=$.trim($this.text());
                     for(s in escapes){
-                        opts.equation = opts.equation.replace(s,'%'+escapes[s])
+                        opts.equation = opts.equation.replaceAll(s,'%'+escapes[s])
                     }
                     for(s in sections)
                     {
