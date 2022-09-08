@@ -50,3 +50,10 @@ a:visited, a:active, a:link, a:hover {
 .home {
     font-family: 'Schoolbell', arial, serif; 
 }
+
+pre code {
+    background-color: #eee;
+    border: 1px solid #999;
+    display: block;
+    padding: 20px;
+}
