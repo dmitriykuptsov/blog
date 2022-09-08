@@ -5,10 +5,24 @@
         <link rel="stylesheet" href="css/blog.css">
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/jslatex.js"></script>
-        <script type="text/javascript">
+        <!-- script type="text/javascript">
             $(function () {
                 $(".latex").latex({url: 'https://chart.apis.google.com/chart?cht=tx&chl={e}'});
             });
+        </script -->
+        <script>
+            MathJax = {
+              loader: {
+                load: ['input/tex-base', 'output/svg', 'ui/menu', '[tex]/require', '[tex]/mathtools']
+              },
+              tex: {
+                packages: ['base', 'require', 'mathtools'],
+                inlineMath: [['$', '$'], ["\\(", "\\)"]]
+              }
+            };
+        </script>
+        <script type="text/javascript" id="MathJax-script" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/startup.js">
         </script>
         <title>Machine learning</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -25,86 +39,128 @@
                     <div class="blog-paragraph">
                         Consider that we have a matrix A whose columns are m observations 
                         and each of n rows are features. In this way we have non square nxm 
-                        matrix. Like we can factor numbers into product of primes, Singular 
+                        matrix. Like we can factor numbers into product of primes, singular 
                         vector decomposition method, or SVD in short, suggests that we can 
                         factor any matrix into components. Accordingly, any matrix can be 
-                        factorized into <span class="latex">A=U\SigmaV^T</span>.
+                        factorized into <span class="latex">$A=U \Sigma V^T$</span>.
                     </div>
                     <div class="blog-paragraph">
-                        Let’s look at matrices <span class="latex">AA^T</span> and <span class="latex">A^TA</span>. 
+                        Let’s look at matrices <span class="latex">$AA^T$</span> and <span class="latex">$A^TA$</span>. 
                         Both matrices are symmetric, square, at least positive semidefinite (have eigenvalues 
                         which are zeros or positive numbers), both have equal positive eigenvalues, and the rank 
-                        r equal to the rank of original matrix A.
+                        r equals to the rank of original matrix A.
                     </div>
                     <div class="blog-paragraph">
-                        Moreover, let’s assume that the column vectors u_i are the eigenvectors of 
-                        <span class="latex">AA^T</span>, and column vectors v_i are the eigenvectors of 
-                        <span class="latex">A^TA</span>. Both matrices have same positive eigenvalues. 
+                        Moreover, let’s assume that the column vectors <span class="latex">$u_i$</span> are the eigenvectors of 
+                        <span class="latex">$A A^T$</span>, and column vectors <span class="latex">$v_i$</span> are the eigenvectors of 
+                        <span class="latex">$A^T A$</span>. Both matrices have same positive eigenvalues. 
                         The square roots of these eigenvalues are singular values.
-                        If we now construct the matrices U and V using the corresponding 
+                        If we now construct the matrices $U$ and $V$ using the corresponding 
                         column vectors comprising eigenvectors (after normalization), it is easy to 
-                        show that <span class="latex">U^T U=I</span> and <span class="latex">V^T V=I</span>, 
+                        show that <span class="latex">$U^T U=I$</span> and <span class="latex">$V^T V=I$</span>, 
                         given that the rows of these matrices are orthonormal. 
-                        Let’s get back to the proposition of SVD that states  <span class="latex">A=UΣV^T</span> 
-                        to smallest (and so are the eigenvectors). To prove the proposition 
-                        (for any matrix A). Assume now that the columns of <span class="latex">\Sigma</span> are ordered from largest 
-                        <span class="latex">A=U\SigmaV^T</span>, we need to solve for three unknowns, namely: 
-                        <span class="latex">U, \Sigma, V</span>. Let’s write few facts:
-                        <div class="latex">A=U\SigmaV^T</div>
-                        <div class="latex">A^T=V\SigmaU^T</div>
-                        We can now write <span class="latex">AA^T</span> and <span class="latex">A^TA</span> as follows:
-                        <div class="latex">A^T A= V\SigmaU^T</div>
-                        <div class="latex">U\SigmaV^T=V\Sigma^2 V^T</div>
+                        Let’s get back to the proposition of SVD that states  <span class="latex">$A=U \Sigma V^T$</span>.
+                        Assume now that the columns of <span class="latex">$\Sigma$</span> are 
+                        ordered from largest to smallest (and so are the eigenvectors).
+                        To get <span class="latex">$A=U \Sigma V^T$</span>, we need to solve for three unknowns, namely: 
+                        <span class="latex">$U, \Sigma, V$</span>. Let’s write few facts:
+                        <div class="latex">$$A=U \Sigma V^T$$</div>
+                        <div class="latex">$$A^T=V \Sigma U^T$$</div>
+                        We can now write <span class="latex">$AA^T$</span> and <span class="latex">$A^TA$</span> as follows:
+                        <div class="latex">$$A^T A= V \Sigma V^T$$</div>
+                        <!-- div class="latex">AA^T=U \Sigma^2 U^T</div -->
                         Or after some algebraic manipulations we get:
-                        <div class="latex">A^T AV= V\Sigma^2</div>
-                        It is easy to see that <span class="latex">V^T</span> comprises eigenvectors and 
-                        <span class="latex">\Sigma^2</span> are eigenvalues of <span class="latex">A^T A</span>. 
-                        In a similar fashion we can find U:
-                        <div class="latex">AA^T= U\SigmaV^TV\SigmaU=U\Sigma^2U^T</div>
-                        <div class="latex">AA^T U= U\Sigma^2</div>
-                        U and V are now vector of eigenvectors of <span class="latex">A^T A</span> and 
-                        <span class="latex">AA^T</span> correspondingly, and <span class="latex">Σ^2</span> 
+                        <div class="latex">$$A^T AV= V \Sigma^2$$</div>
+                        <!-- div class="latex">AA^TU= U \Sigma^2</div -->
+                        It is easy to see that <span class="latex">$V^T$</span> comprises eigenvectors and 
+                        <span class="latex">$\Sigma^2$</span> are eigenvalues of <span class="latex">$A^T A$</span>. 
+                        In a similar fashion we can find $U$:
+                        <div class="latex">$$AA^T= U \Sigma V^TV \Sigma U=U \Sigma^2 U^T$$</div>
+                        <div class="latex">$$AA^T U= U \Sigma^2$$</div>
+                        U and V are now vector of eigenvectors of <span class="latex">$A^T A$</span> and 
+                        <span class="latex">$AA^T$</span> correspondingly, and <span class="latex">$\Sigma^2$</span> 
                         are eigenvalues (note, the positive eigenvalues are equal for both matrices).
                         Now, let’s derive a useful equation. Since we have:
-                        <div class="latex">(■(u_1^1&⋯&u_1^m@⋮&⋱&⋮@u_n^1&⋯&u_n^m )) (■(σ_1&⋯&0@⋮&⋱&⋮@0&⋯&σ_m ))= (■(〖σ_1 u〗_1^1&⋯&σ_m u_1^m@⋮&⋱&⋮@σ_1 u_n^1&⋯&σ_m u_n^m ))</div>
+                        <div>
+                            $$ \left[
+                                \begin{array}{ccc}
+                                u_1^1&\cdots&u_1^m\\
+                                \vdots & \ddots & \vdots\\
+                                u_n^1 & \cdots & u_n^m\\
+                                \end{array}
+                            \right] 
+                            \left[
+                                \begin{array}{ccc}
+                                \sigma_1&\cdots&0\\
+                                \vdots & \ddots & \vdots\\
+                                0 & \cdots & \sigma_m\\
+                                \end{array}
+                            \right] = 
+                            \left[
+                                \begin{array}{ccc}
+                                \sigma_1u_1^1&\cdots&\sigma_mu_1^m\\
+                                \vdots & \ddots & \vdots\\
+                                \sigma_1u_n^1 & \cdots & \sigma_mu_n^m\\
+                                \end{array}
+                            \right]
+                            $$
+                        </div>
                         Therefore, we can obtain:
-                        <div class="latex">(■(u_1^1&⋯&u_1^m@⋮&⋱&⋮@u_m^1&⋯&u_m^m ))(■(σ_1&⋯&0@⋮&⋱&⋮@0&⋯&0)) (■(v_1^1&⋯&v_1^n@⋮&⋱&⋮@v_n^1&⋯&v_n^n ))^T=σ_1 u_1 v_1^T+...+ σ_r u_r v_r^T</div>
+                        $$ A = \left[
+                                \begin{array}{ccc}
+                                u_1^1&\cdots&u_1^m\\
+                                \vdots & \ddots & \vdots\\
+                                u_m^1 & \cdots & u_m^m\\
+                                \end{array}
+                            \right] 
+                            \left[
+                                \begin{array}{ccc}
+                                \sigma_1&\cdots&0\\
+                                \vdots & \ddots & \vdots\\
+                                0 & \cdots & 0\\
+                                \end{array}
+                            \right] 
+                            \left[
+                                \begin{array}{ccc}
+                                v_1^1&\cdots&v_1^n\\
+                                \vdots & \ddots & \vdots\\
+                                v_n^1 & \cdots & v_n^n\\
+                                \end{array}
+                            \right] \approx
+                            \sigma_1 u_1 v_1^T + \cdots + \sigma_r u_r v_r^T
+                            $$
                         The above equation shows that we can factorize the entire matrix A into so called atoms. Moreover, we can 
-                        exclude eigenvectors for which <span class="latex">\sigma</span> is too small. In this manner we can 
+                        exclude eigenvectors for which <span class="latex">$\sigma$</span> is too small. In this manner we can 
                         approximate the matrices with some loss of information. 
                         A picture worth the thousand words. Let’s show the beauty of SVD using real example. 
                         We will use Octave to demonstrate how image compression can be done easily with SVD.
                         Here is the code we have used to compress the image:
-                        <code>
-                            [I, map] = imread ("nature.bmp");
-                            J = rgb2gray(I);
-                            function [Uc, Sc, Vc] = compress_matrix(A, N)
-                                [U, S, V] = svd(A);
-                                Uc = U(:, 1:N);
-                                Sc = S(1:N, 1:N);
-                                Vc = V(:, 1:N);
-                            end
-                            [Uc, Sigmac, Vc] = compress_matrix(J, 20);
-                            Jc20 = uint8(Uc * Sigmac * Vc');
-                            [Uc, Sigmac, Vc] = compress_matrix(J, 50);
-                            Jc50 = uint8(Uc * Sigmac * Vc');
-                            [Uc, Sigmac, Vc] = compress_matrix(J, 100);
-                            Jc100 = uint8(Uc * Sigmac * Vc');
-                            figure
-                            subplot(2,2,1)
-                            xlabel("original")
-                            imshow(J)
-                            subplot(2,2,2)
-                            xlabel("Compressed (first 20 components)")
-                            imshow(Jc20)
-                            subplot(2,2,3)
-                            xlabel("Compressed (first 50 components)")
-                            imshow(Jc50)
-                            subplot(2,2,4)
-                            xlabel("Compressed (first 100 components)")
-                            imshow(Jc100)
-                        </code>
-                        Here is how the result looks like for original image, compressed image using first 20, 50 and 100 components:
+                        <pre><code>
+[I, map] = imread ("nature.bmp");
+J = rgb2gray(I);
+function [Uc, Sc, Vc] = compress_matrix(A, N)
+    [U, S, V] = svd(A);
+    Uc = U(:, 1:N);
+    Sc = S(1:N, 1:N);
+    Vc = V(:, 1:N);
+end
+[Uc, Sigmac, Vc] = compress_matrix(J, 5);
+Jc5 = uint8(Uc * Sigmac * Vc');
+[Uc, Sigmac, Vc] = compress_matrix(J, 50);
+Jc50 = uint8(Uc * Sigmac * Vc');
+[Uc, Sigmac, Vc] = compress_matrix(J, 100);
+Jc100 = uint8(Uc * Sigmac * Vc');
+figure
+subplot(2,2,1)
+imshow(J)
+subplot(2,2,2)
+imshow(Jc5)
+subplot(2,2,3)
+imshow(Jc50)
+subplot(2,2,4)
+imshow(Jc100)
+                        </code></pre>
+                        Here is how the result looks like for original image and compressed images using first 5, 50 and 100 components:
                     </div>
                     <div class="blog-paragraph"  style="text-align: center">
                         <img src="img/compressed.jpg" width="100%" style="margin:auto" alt="Singluar value decomposition"/>
