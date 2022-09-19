@@ -55,10 +55,10 @@
 
 			The gradient is:
 
-			$$\frac{\partial J}{\partial \Theta}=1/n \Sigma_{i=0}^n (y_i-\Theta x_i)(-x_i)$$
+			$$\frac{\partial J}{\partial \Theta_j}=1/n \Sigma_{i=0}^n (y_i-\Theta x_i)(-x^j_i)$$
 
 			And finally, the update rule is:
-			$$\Theta=\Theta - \alpha 1/n \Sigma_{i=0}^n(y_i-\Theta x_i)(-x_i)$$
+			$$\Theta_j=\Theta_j - \alpha 1/n \Sigma_{i=0}^n(y_i-\Theta x_i)(-x^j_i)$$
 			Where $\alpha$ is a learning rate.
 			In the figure below we show an example of how polynomial regression can be used to fit the empirical data:
  		    </div>
