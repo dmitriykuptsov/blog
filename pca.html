@@ -5,10 +5,25 @@
         <link rel="stylesheet" href="css/blog.css">
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/jslatex.js"></script>
-        <script type="text/javascript">
+        <script type="text/javascript" src="js/jslatex.js"></script>
+        <!-- script type="text/javascript">
             $(function () {
                 $(".latex").latex({url: 'https://chart.apis.google.com/chart?cht=tx&chl={e}'});
             });
+        </script -->
+        <script>
+            MathJax = {
+              loader: {
+                load: ['input/tex-base', 'output/svg', 'ui/menu', '[tex]/require', '[tex]/mathtools']
+              },
+              tex: {
+                packages: ['base', 'require', 'mathtools'],
+                inlineMath: [['$', '$'], ["\\(", "\\)"]]
+              }
+            };
+        </script>
+        <script type="text/javascript" id="MathJax-script" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/startup.js">
         </script>
         <title>Machine learning</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -31,7 +46,7 @@
                     </div>
                     <div class="blog-paragraph">
                         <div class="latex">
-                            Y=X-\bar{X}
+                            $$Y=X-\bar{X}$$
                         </div>
                     </div>
                     <div class="blog-paragraph">
@@ -46,22 +61,22 @@
                         the projections. Thus, we can write this fact mathematically as follows:
 
                         <div class="latex">
-                            Var\ =\ \frac{1}{N}\sum{({ux}_i-u\bar{X}}){(ux_i-u\bar{X})}^T=u[\frac{1}{N}\sum{(y_i}){(y_i)}^T]u^T=uCu^T
+                            $$Var\ =\ \frac{1}{N}\sum{({ux}_i-u\bar{X}}){(ux_i-u\bar{X})}^T=u[\frac{1}{N}\sum{(y_i}){(y_i)}^T]u^T=uCu^T$$
                         </div>
                         
 
                         Observe that the term under the sum is just a covariance matrix of <b>Y</b>  
                         (it can be easily shown that it is  indeed so by expanding the multiplication of vector by itself).
                         Since the task is to maximize the variance and given that the magnitude of vector <b>u</b> should be bounded 
-                        (otherwise the optimization will lead to infinitely large vector <b>u</b>) we say that <div class="latex">uu^T=1</div>
+                        (otherwise the optimization will lead to infinitely large vector <b>u</b>) we say that <div class="latex">$$uu^T=1$$</div>
                         We can construct the Lagrangian and formulate the primal optimization problem (given the constraint):
                         <div class="latex">
-                            L=uCu^T-\alpha(uu^T-1)
+                            $$L=uCu^T-\alpha(uu^T-1)$$
                         </div>
                         Taking the derivative of this expression with respect to vector <b>u</b> (matrix and vector derivatives are 
                         described <a href="https://en.wikipedia.org/wiki/Matrix_calculus">here</a>) and equating it to zero we get:
                         <div class="latex">
-                            Cu^T=\alpha u^T
+                            $$Cu^T=\alpha u^T$$
                         </div>
                         
                         But this is exactly the expression for the eigenvalues and eigenvectors. That is to maximize the variance we need 
@@ -69,7 +84,7 @@
                         easily seen if we would plug the obtained equation into original one). At the end, we can construct the matrix in 
                         which rows are eigenvectors (ranked according to eigenvalues in the descending order), select top k rows and 
                         multiply the original vector <b>X</b> by the sought matrix of eigenvectors. This will be our reduced matrix:
-                        <div class="latex">\hat{X}=XU^T</div>
+                        <div class="latex">$$\hat{X}=XU^T$$</div>
                     </div>
                 </div>
             </div>

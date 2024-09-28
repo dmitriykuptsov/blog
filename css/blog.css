@@ -1,10 +1,22 @@
 .content {
-    width: 40%;
+    width: 50%;
     margin: auto;
     /*font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
     text-align: justify;
     font-weight: initial;
     line-height: 2;
+}
+
+@media screen and (max-width: 992px) {
+    .content {
+        width: 90%;
+        margin: auto;
+        /*font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
+        text-align: justify;
+        font-weight: initial;
+        line-height: 2;
+        font-size: 16px;
+    }
 }
 
 .blog-item {

@@ -5,10 +5,24 @@
         <link rel="stylesheet" href="css/blog.css">
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/jslatex.js"></script>
-        <script type="text/javascript">
+         <!-- script type="text/javascript">
             $(function () {
                 $(".latex").latex({url: 'https://chart.apis.google.com/chart?cht=tx&chl={e}'});
             });
+        </script -->
+        <script>
+            MathJax = {
+              loader: {
+                load: ['input/tex-base', 'output/svg', 'ui/menu', '[tex]/require', '[tex]/mathtools']
+              },
+              tex: {
+                packages: ['base', 'require', 'mathtools'],
+                inlineMath: [['$', '$'], ["\\(", "\\)"]]
+              }
+            };
+        </script>
+        <script type="text/javascript" id="MathJax-script" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/startup.js">
         </script>
         <title>Machine learning</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -33,10 +47,10 @@
                         additional hyperplanes that are parallel to and equidistant from 
                         the given one. Namely, <b>wx</b>+<b>b</b>=<b>1</b> and 
                         <b>wx</b>+<b>b</b>=<b>-1</b>. If we say that we have a set of points 
-                        <span class="latex">(x_i, y_i)</span> where <span class="latex">y_i</span> 
+                        <span class="latex">$$(x_i, y_i)$$</span> where <span class="latex">$$y_i$$</span> 
                         is either one or negative one (depending on the class to which the 
                         sample belongs), we state that the following must hold 
-                        <span class="latex">y_i(wx+b)-1 \geq 0</span>, with equality occurring 
+                        <span class="latex">$$y_i(wx+b)-1 \geq 0$$</span>, with equality occurring 
                         when points are exactly on the hyperplanes. We visualize the problem for the 2-D setting in the figure below:
                     </div>
                     <div class="blog-paragraph"  style="text-align: center">
@@ -44,15 +58,15 @@
                     </div>
                     <div class="blog-paragraph">
                         Now if we take two datapoints, one on each hyperplane, parallel to and 
-                        equidistant to <b>wx</b>+<b>b</b>=<b>0</b>, <span class="latex">x_1</span> and 
-                        <span class="latex">x_2</span>, the margin between these two points can be 
+                        equidistant to <b>wx</b>+<b>b</b>=<b>0</b>, <span class="latex">$$x_1$$</span> and 
+                        <span class="latex">$$x_2$$</span>, the margin between these two points can be 
                         expressed as follows (basically, the difference between the two vectors 
                         projected onto unit vector <b>w</b>, which is perpendicular to hyperplane 
                         that separates the points in different classes):
                     </div>
                     <div class="blog-paragraph">
                         <div class="latex">
-                            \frac{(x_2-x_1)\cdot w}{||w||}=\ \frac{2}{||w||}
+                            $$\frac{(x_2-x_1)\cdot w}{||w||}=\ \frac{2}{||w||}$$
                         </div>
                     </div>
 
@@ -63,7 +77,7 @@
                     <div class="blog-paragraph">
                         
                         <div class="latex">
-                            \frac{1}{2}{||w||}^2
+                            $$\frac{1}{2}{||w||}^2$$
                         </div>
                     </div>
 
@@ -74,7 +88,7 @@
 
                     <div class="blog-paragraph">
                         <div class="latex">
-                            L=\frac{1}{2}w^Tw-\sum_{i=1}^{n}{\alpha_i (y_i (wx_i+b)-1)}
+                            $$L=\frac{1}{2}w^Tw-\sum_{i=1}^{n}{\alpha_i (y_i (wx_i+b)-1)}$$
                         </div>
                     </div>
 
@@ -85,10 +99,10 @@
                     
                     <div class="blog-paragraph">
                         <div class="latex">
-                            \frac{\partial L}{\partial w}=w-\sum_{i=1}^{n}{\alpha_iy_ix_i}\ =\ 0
+                            $$\frac{\partial L}{\partial w}=w-\sum_{i=1}^{n}{\alpha_iy_ix_i}\ =\ 0$$
                         </div>
                         <div class="latex">
-                            \frac{\partial L}{\partial b}=\sum_{i=1}^{n}{\alpha_iy_i}=0
+                            $$\frac{\partial L}{\partial b}=\sum_{i=1}^{n}{\alpha_iy_i}=0$$
                         </div>
                     </div>
 
@@ -100,10 +114,10 @@
                     
                     <div class="blog-paragraph">
                         <div class="latex">
-                            L_D=\sum_{i=1}^{n}\alpha_i-\frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n}{\alpha_i\alpha_jy_iy_jx_ix_j}
+                            $$L_D=\sum_{i=1}^{n}\alpha_i-\frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n}{\alpha_i\alpha_jy_iy_jx_ix_j}$$
                         </div>
                         <div class="latex">
-                            s.t. \sum_{i=1}^{n}{\alpha_iy_i=0}
+                            $$s.t. \sum_{i=1}^{n}{\alpha_iy_i=0}$$
                         </div>
                     </div>
 
@@ -111,12 +125,12 @@
                         We can now solve this maximization problem using Quadratic Programming (QP) solver 
                         and obtain Lagrange multipliers. Once this is done, we can find the vector <b>w</b> 
                         and bias term <b>b</b>. For the last point, we can take a point 
-                        <span class="latex">{(x_s,\ y}_s)\</span> on the hyperplane:
+                        <span class="latex">$$(x_s, y_s)$$</span> on the hyperplane:
                     </div>
                     
                     <div class="blog-paragraph">
                         <div class="latex">
-                            y_s(wx_s + b)=1\ \rightarrow\ b=\ y_s-wx_s=y_s-\sum_{i=1}^{n}{\alpha_iy_ix_i}x_s
+                            $$y_s(wx_s + b)=1\ \rightarrow\ b=\ y_s-wx_s=y_s-\sum_{i=1}^{n}{\alpha_iy_ix_i}x_s$$
                         </div>
                     </div>
 

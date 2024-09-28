@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Schoolbell&v1" rel="stylesheet">
+        <link rel="stylesheet" href="css/blog.css">
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jslatex.js"></script>
+        <!-- script type="text/javascript">
+            $(function () {
+                $(".latex").latex({url: 'https://chart.apis.google.com/chart?cht=tx&chl={e}'});
+            });
+        </script -->
+        <script>
+            MathJax = {
+              loader: {
+                load: ['input/tex-base', 'output/svg', 'ui/menu', '[tex]/require', '[tex]/mathtools']
+              },
+              tex: {
+                packages: ['base', 'require', 'mathtools'],
+                inlineMath: [['$', '$'], ["\\(", "\\)"]]
+              }
+            };
+        </script>
+        <script type="text/javascript" id="MathJax-script" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/startup.js">
+        </script>
+        <title>Machine learning</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="description" content="Mathematics for Machine Learning">
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="neural networks, svm, machine learning, linear algebra, bayes, PCA, SVD, Kriging" />
+    </head>
+    <body>
+        <div class="content">
+            <a href="index.html" class="home">Home</a>
+            <div class="blog-item">
+                <div class="blog-header">Gradient descent</div>
+                <div class="blog-shortly">                    
+                    <div class="blog-paragraph">
+			Assume that we have a spacially distributed data such data from boreholes, or heights of a landshaft.
+			Assume further that the sampling is done regulary or irregulary. It can be so that the 
+			data needs to be interpolated and take into account spaciality. In these cases it is best to use the 
+            such tool as Kriging. To be continued...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

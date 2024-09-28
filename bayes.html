@@ -5,10 +5,24 @@
         <link rel="stylesheet" href="css/blog.css">
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/jslatex.js"></script>
-        <script type="text/javascript">
+        <!-- script type="text/javascript">
             $(function () {
                 $(".latex").latex({url: 'https://chart.apis.google.com/chart?cht=tx&chl={e}'});
             });
+        </script -->
+        <script>
+            MathJax = {
+              loader: {
+                load: ['input/tex-base', 'output/svg', 'ui/menu', '[tex]/require', '[tex]/mathtools']
+              },
+              tex: {
+                packages: ['base', 'require', 'mathtools'],
+                inlineMath: [['$', '$'], ["\\(", "\\)"]]
+              }
+            };
+        </script>
+        <script type="text/javascript" id="MathJax-script" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/startup.js">
         </script>
         <title>Machine learning</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -29,21 +43,21 @@
                     </div>
                     <div class="blog-paragraph">
                         <div class="latex">
-                            P\left(y_j\middle|X\right)=\frac{P\left(y_j\right)}{P(x_1)...{P(x}_2)}\prod_{i=1}^{n}{P\left(x_i\middle| y_j\right)}
+                            $$P\left(y_j\middle|X\right)=\frac{P\left(y_j\right)}{P(x_1)...{P(x}_2)}\prod_{i=1}^{n}{P\left(x_i\middle| y_j\right)}$$
                         </div>
                     </div>
                     <div class="blog-paragraph">
-                        Calculating <span class="latex">{P(y}_j)</span> and <span class="latex">{P(x}_i|y_j)</span> is trivial: 
+                        Calculating <span class="latex">$${P(y}_j)$$</span> and <span class="latex">$${P(x}_i|y_j)$$</span> is trivial: 
                         the first probability can be calculated as a fraction of time 
-                        class <span class="latex">y_j</span> appears in the dataset, and the second probability 
-                        can be calculated as a fraction of time feature <span class="latex">x_i</span> 
-                        appears in the class <span class="latex">y_j</span>. The above formula assumes that the features appear independently, hence the name of the 
+                        class <span class="latex">$$y_j$$</span> appears in the dataset, and the second probability 
+                        can be calculated as a fraction of time feature <span class="latex">$$x_i$$</span> 
+                        appears in the class <span class="latex">$$y_j$$</span>. The above formula assumes that the features appear independently, hence the name of the 
                         classifier – naïve. The classification is therefore done as follows (we can ignore the denominator since it does 
                         not depend on class and is effectively a constant, i.e., it scales all results in a similar way):
                     </div>
                     <div class="blog-paragraph">
                         <div class="latex">
-                            C=\ {argmax}_{\forall j\in k\ }P\left(y_j\right)\prod_{i=1}^{n}{P\left(x_i\middle| y_j\right)}
+                            $$C=\ {argmax}_{\forall j\in k\ }P\left(y_j\right)\prod_{i=1}^{n}{P\left(x_i\middle| y_j\right)}$$
                         </div>
                     </div>
 
